@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Giphy API</title>
+</head>
+
+<body>
+  <script>
+    // Example queryURL for Giphy API - API key MUST be included below
+    const queryURL = "https://api.giphy.com/v1/gifs/trending?api_key=[place-api-key-here]";
+
+    fetch(queryURL)
+    .then(function(response) {
+      return response.json();
+    }).then(function(data) {
+      console.log(data);
+    });
+  </script>
+
+</body>
+
+</html>
