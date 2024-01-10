@@ -5,7 +5,7 @@ const movies = ["The Matrix", "Dune", "Mr. Right", "The Lion King"];
 function displayMovieInfo() {
   const movie = $(this).attr("data-name");
   const queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=trilogy`;
-
+  console.log(queryURL);
   // Creates a Fetch call for the specific movie button being clicked
   fetch(queryURL)
     .then(function (response) {
@@ -14,18 +14,40 @@ function displayMovieInfo() {
     .then(function (data) {
       // YOUR CODE GOES HERE!!!
       // Creates a div to hold the movie
+      const movieDiv = $("<div>");
       // Retrieves the Rating Data
+      const ratingData = data.Rated;
       // Creates an element to have the rating displayed
+      const pOne = $("<p>").text("Rating: " + ratingData);
       // Displays the rating
+      movieDiv.append(pOne);
+      console.log(movieDiv);
+      console.log(data);
       // Retrieves the release year
+      const releaseYear = data.Released;
       // Creates an element to hold the release year
+      const pTwo = $("<p>").text("Released: " + releaseYear);
       // Displays the release year
+      movieDiv.append(pTwo);
       // Retrieves the plot
+      const plot = data.Plot;
       // Creates an element to hold the plot
+      const pThree = $("<p>").text("Plot: " + plot);
       // Appends the plot
+      movieDiv.append(pThree);
+
+      //actors
+      const actors = data.Actors;
+      const pFour = $("<p>").text("Actors: " + actors);
+      movieDiv.append(pFour);
+      // Retrieving the URL for the image
+      const imgURL = data.Poster;
       // Creates an element to hold the image
+      const image = $("<img>").attr("src", imgURL);
       // Appends the image
+      movieDiv.append(image);
       // Puts the entire Movie above the previous movies.
+      $("#movies-view").prepend(movieDiv);
     });
 }
 
