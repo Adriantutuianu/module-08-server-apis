@@ -18,6 +18,9 @@ $("#add-movie").on("click", function (event) {
   event.preventDefault();
   var newMovie = $("#movie-input").val();
   console.log(newMovie);
+  movies.push(newMovie);
+  $("#buttons-view").empty(); // empty the array so can be rendered again.
+  renderButtons(); //render again throught the array to add new movie.
 });
 
 // Calling the renderButtons function to display the initial list of movies

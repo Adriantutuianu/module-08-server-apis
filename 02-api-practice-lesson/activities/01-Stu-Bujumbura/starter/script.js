@@ -15,14 +15,16 @@ fetch(queryURL)
     // Create CODE HERE to log the resulting object
     console.log(data);
     // Create CODE HERE to calculate the temperature (converted from Kelvin)
-    var tempInC = data.main.temp - 273.15;
+    var tempInC = (data.main.temp - 273.15).toFixed(2);
     console.log(tempInC);
     // Create CODE HERE to transfer content to HTML
-    console.log(`wind speed: ${data.wind.speed}`); // humidity
-    console.log(`wind speed: ${data.main.humidity}`); //
+    const windSpeed = `wind speed: ${data.wind.speed}`;
+    const humidity = `humidity: ${data.main.humidity}`;
     // Create CODE HERE to dump the temperature content into HTML
     // $(".temp").text("temp " + tempInC);
     $(".temp").text(`temp ${tempInC}`);
+    $(".wind").text(`wind speed ${windSpeed}`);
+    $(".humidity").text(`humidity ${humidity}`);
     // Hint: To convert from Kelvin to Celsius: C = K - 273.15
   });
 
