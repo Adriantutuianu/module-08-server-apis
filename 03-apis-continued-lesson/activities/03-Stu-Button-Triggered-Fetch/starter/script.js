@@ -1,6 +1,8 @@
 $("button").on("click", function () {
   const person = $(this).attr("data-person");
-  const queryURL = `https://api.giphy.com/v1/gifs/search?q=${person}&api_key=[place-api-key-here]&limit=10`;
+  const apiKey = "DuxD2pubVUxmndNs6Rbu10L5Q3xyxaLS";
+
+  const queryURL = `https://api.giphy.com/v1/gifs/search?q=${person}&api_key=${apiKey}&limit=10`;
 
   fetch(queryURL)
     .then(function (response) {
@@ -8,8 +10,7 @@ $("button").on("click", function () {
     })
     .then(function (data) {
       const results = data.data;
-
-      $.each(results, function (i, result ) {
+      $.each(results, function (i, result) {
         const gifDiv = $("<div>");
 
         const rating = result.rating;
@@ -21,8 +22,8 @@ $("button").on("click", function () {
 
         gifDiv.prepend(p);
         gifDiv.prepend(personImage);
-
+        $("#gifs-appear-here").empty();
         $("#gifs-appear-here").prepend(gifDiv);
-      })
+      });
     });
 });
