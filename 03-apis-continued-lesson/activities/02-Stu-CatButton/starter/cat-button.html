@@ -1,46 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Magical Cat Button</title>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <title>The Magical Cat Button</title>
-</head>
+  <body>
+    <button id="cat-button">magical cat button</button>
+    <div id="images"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      //when id-cat is clicked execute the following:
+      $("#cat-button").on("click", function () {
+        const apiKey = "DuxD2pubVUxmndNs6Rbu10L5Q3xyxaLS";
+        const queryURL = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=cats&rating=pg`;
 
-<body>
-  <button id="cat-button">magical cat button</button>
-  <div id="images"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    //
-    $('#cat-button').on('click', function () {
-      //
-      const queryURL =
-        'https://api.giphy.com/v1/gifs/random?api_key=[place-api-key-here]&tag=cats&rating=pg';
+        //fetch request to Giphy Api
+        fetch(queryURL)
+          .then(function (response) {
+            //convert the response to json format
+            return response.json();
+          })
 
-      //
-      fetch(queryURL)
-        .then(function (response) {
-          //
-          return response.json();
-        })
+          //handle data from response
+          .then(function (data) {
+            // extract the url
+            const imageUrl = data.data.images.original.url;
 
-        //
-        .then(function (data) {
-          //
-          const imageUrl = data.data.images.original.url;
+            //created image tag
+            const catImage = $("<img>");
 
-          //
-          const catImage = $('<img>');
+            //set the source and alt attributes of the image
+            catImage.attr("src", imageUrl);
+            catImage.attr("alt", "cat image");
 
-          //
-          catImage.attr('src', imageUrl);
-          catImage.attr('alt', 'cat image');
-
-          //
-          $('#images').prepend(catImage);
-        });
-    });
-  </script>
-</body>
-
+            //prepend the new cat image
+            $("#images").prepend(catImage);
+          });
+      });
+    </script>
+  </body>
 </html>

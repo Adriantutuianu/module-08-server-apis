@@ -50,5 +50,3 @@ $("#select-artist").on("click", function (event) {
   // Running the searchBandsInTown function(passing in the artist as an argument)
   searchBandsInTown(artist);
 });
-
-// const queryURL = `377fcf58-190d-42b2-9796-b6ea86442f08`;
