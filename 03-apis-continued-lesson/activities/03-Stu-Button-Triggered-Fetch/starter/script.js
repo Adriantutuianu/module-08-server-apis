@@ -9,10 +9,10 @@ $("button").on("click", function () {
       return response.json();
     })
     .then(function (data) {
+      console.log(data);
       const results = data.data;
       $.each(results, function (i, result) {
         const gifDiv = $("<div>");
-
         const rating = result.rating;
 
         const p = $("<p>").text("Rating: " + rating);
